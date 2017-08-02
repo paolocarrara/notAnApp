@@ -1,0 +1,49 @@
+.content {
+  margin-bottom: 3em;
+}
+
+#review-form {
+  padding: 1em;
+  margin: 2em auto 0;
+  width: 35%;
+  border: 1px solid #EEE;
+}
+
+#search-box {
+  padding: 1em;
+  margin: 2em auto 0;
+  width: 35%;
+  border: 1px solid #EEE;
+}
+
+#reviews {
+  padding: 1em;
+  width: 35%;
+  margin: 2em auto 0;
+  border: 1px solid #EEE;
+}
+
+#reviews .movie-title {
+  font-weight: bold;
+  float: left;
+  width: 50%;
+}
+
+#reviews .movie-rate {
+  text-align: right;
+  float: right;
+  width: 50%;
+}
+
+#reviews .movie-comment {
+  clear: both;
+  display: block;
+  width: 100%;
+  background-color: #EFEFEF;
+  padding: 0.5em;
+}
+
+#reviews .review .review-options {
+  text-align: center;
+  margin-top: 0.5em;
+}

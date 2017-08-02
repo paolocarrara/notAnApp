@@ -1,22 +1,105 @@
-<div>
-  <form class="" (ngSubmit)='onSave()'>
-    <div class="input-group">
+<div class='content'>
+  <form #reviewForm='ngForm' id='review-form' class="" (ngSubmit)='onSave()'>
+    <div class="form-group">
       <label for="movie">Movie</label>
-      <input type="text" id='movie' name="movie" value="">
+      <input
+        type="text"
+        id='movie'
+        class='form-control'
+        name="movie"
+        ngModel
+        placeholder="Movie title"
+        required>
     </div>
 
-    <div class="input-group">
-      <label for="review">Review</label>
-      <input type="number" id='review' name="review" value="">
+    <div class="form-group">
+      <label for="review">Rate</label>
+      <input
+        type="number"
+        id='review'
+        class='form-control'
+        placeholder="From 0 to 5"
+        name="rate"
+        ngModel
+        required>fasdfasd
     </div>
 
-    <div class="input-group">
+    <div class="form-group">class
       <label for="comment">Comment</label>
-      <input type="text" id='comment' name="comment" value="">
+      <input
+        type="text"
+        id='comment'
+        class='form-control'
+        placeholder="Comment"
+        name="comment"
+        ngModel
+        required>
     </div>
 
-    <div class="input-group">
-      <button type="submit" name="button">Save review</button>
+    <div class="form-group">
+      <button type="submit" name="button" class='btn'>Save review</button>
+    </div>
+
+    <div class="alert alert-danger" role="alert" *ngIf='onSaveErrorMessage'>
+      <strong>Oh snap!</strong> {{ onSaveErrorMessage }}
     </div>
   </form>
+
+  <div id="search-box">
+    <form #searchForm='ngForm' class="" (ngSubmit)='onSearch()'>
+      <div class="form-group">
+        <label for="movie">Find by movie title</label>
+        <input
+          type="search"
+          id='movie'
+          class='form-control'
+          (keyup)='onSearch()'
+          name="movie"
+          ngModel
+          placeholder="Movie title"
+          required>
+      </div>
+    </form>
+  </div>
+
+  <ul class='list-group' id="reviews">
+    <li class="list-group-item">
+      Movies list
+    </li>
+    <div class="" *ngIf='!reviews.length'>
+      Not results were found!
+    </div>
+    <li class="list-group-item review" *ngFor='let review of reviews'>
+      <div class='movie-title'>Title: {{ review.get('movie') }}</div>
+      <div class='movie-rate'>Rate: {{ review.get('rate') }}</div>
+      <br>
+      <div class='movie-comment'>Comment: {{ review.get('comment') }}</div>
+      <div class="btn-gr    oup review-options" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-secondary" (click)='onGetAverage(review)'>
+          <i class="fa fa-star-half" aria-hidden="true"></i>
+          Average
+        </button>
+        <button type="button" class="btn btn-secondary" (click)='onDestroyReview(review)'>
+          <i class="fa fa-trash-o" aria-hidden="true"></i>
+          Remove
+        </button>
+      </div>
+    </li>
+  </ul>
+
+  <!-- Modal -->
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Movie title: {{ reviewModalMovie }}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Average: {{ reviewModalAverage.toFixed(1) }}</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+  </ng-template>
 </div>
